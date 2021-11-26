@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player_controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float jumpForce = 5f;
 
     private void OnJump()
     {
