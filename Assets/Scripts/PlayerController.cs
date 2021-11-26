@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocityMultiplier = 2f;
     public float jumpForce = 5f;
 
+    public static event GameManager.CollisionEvent OnCollision;
+    public static event GameManager.TriggerEvent OnTrigger;
+
     private void Start()
     {
         if (rb == null)
@@ -25,5 +28,14 @@ public class PlayerController : MonoBehaviour
     private void OnJump()
     {
         rb.velocity = Vector2.up * jumpForce;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        OnCollision(other);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        OnTrigger(other);
     }
 }
