@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] readonly private Rigidbody2D rb;
+    public float jumpForce = 5f;
 
     private void OnJump()
     {
