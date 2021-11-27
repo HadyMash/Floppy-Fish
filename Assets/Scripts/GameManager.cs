@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     public delegate void TriggerEvent(Collider2D collider);
 
     public static float score;
-    [SerializeField] private Text scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     private void OnEnable()
     {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if (scoreText == null) {
-            scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+            scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Food") {
             scoreText.text = (++score).ToString();
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Food>().Collect();
         }
     }
 }
