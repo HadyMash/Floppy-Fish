@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 1956931904}
   - component: {fileID: 1956931908}
   - component: {fileID: 1956931909}
+  - component: {fileID: 1956931910}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1684,6 +1685,18 @@ MonoBehaviour:
   velocityMultiplier: 3
   jumpForce: 4.5
   swimSpeed: 3.5
+  constantForce2D: {fileID: 1956931910}
+--- !u!247 &1956931910
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956931902}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &2060030051
 GameObject:
   m_ObjectHideFlags: 0

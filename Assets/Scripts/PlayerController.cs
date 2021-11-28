@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velocityMultiplier = 2f;
     public float jumpForce = 5f;
     public float swimSpeed = 5f;
+    [SerializeField] private ConstantForce2D constantForce2D;
 
     public static event GameManager.CollisionEvent OnCollision;
     public static event GameManager.TriggerEvent OnTrigger;
@@ -34,10 +35,16 @@ public class PlayerController : MonoBehaviour
 
         if (gameMode == GameMode.swim)
         {
-            rb.bodyType = RigidbodyType2D.Kinematic;
+            // rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.gravityScale = 0;
             gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("Swim");
         } else {
             gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("Flappy");
+        }
+
+        if (constantForce2D == null)
+        {
+            constantForce2D = gameObject.GetComponent<ConstantForce2D>();
         }
     }
 
@@ -65,12 +72,12 @@ public class PlayerController : MonoBehaviour
                 gameManager.StartGame();
             }
 
-            // rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(0, context.ReadValue<float>() * swimSpeed * (GameManager.GetDelay(0) / GameManager.GetDelay(GameManager.time))), Time.deltaTime * swimLerpMultiplier);
-            rb.velocity = new Vector2(0, context.ReadValue<float>() * swimSpeed * (GameManager.GetDelay(0) / GameManager.GetDelay(GameManager.time)));
+            // rb.velocity = new Vector2(0, context.ReadValue<float>() * swimSpeed * (GameManager.GetDelay(0) / GameManager.GetDelay(GameManager.time)));
+            constantForce2D.force = new Vector2(0, context.ReadValue<float>() * swimSpeed * (GameManager.GetDelay(0) / GameManager.GetDelay(GameManager.time)));
         } else if (context.canceled)
         {
-            // rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * 1000 *  swimLerpMultiplier);
-            rb.velocity = Vector2.zero;
+            // rb.velocity = Vector2.zero;
+            constantForce2D.force = Vector2.zero;
         }
     }
 

@@ -78,7 +78,10 @@ public class GameManager : MonoBehaviour
     {
         while (isAlive) {
             float delay = GetDelay(time);
-            playerRigidBody.gravityScale = 2f * (GetDelay(0)/delay);
+            if (PlayerController.gameMode != PlayerController.GameMode.swim)
+            {
+                playerRigidBody.gravityScale = 2f * (GetDelay(0)/delay);
+            }
 
             GameObject obstacle = obstacles[Random.Range(0, obstacles.Count - 1)];
             Vector2 position = new Vector2(xSpawnOffset, Random.Range(minYSpawnOffset, maxYSpawnOffset));
