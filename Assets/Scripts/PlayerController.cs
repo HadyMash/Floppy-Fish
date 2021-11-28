@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
     public static event GameManager.CollisionEvent OnCollision;
     public static event GameManager.TriggerEvent OnTrigger;
 
+    public static GameMode gameMode = GameMode.flappy;
+    public enum GameMode {
+        flappy,
+        swim,
+    }
+
     private void Start()
     {
         if (rb == null)
@@ -26,9 +32,12 @@ public class PlayerController : MonoBehaviour
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
 
-        if (gameObject.GetComponent<PlayerInput>().defaultActionMap == "Swim")
+        if (gameMode == GameMode.swim)
         {
             rb.bodyType = RigidbodyType2D.Kinematic;
+            gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("Swim");
+        } else {
+            gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("Flappy");
         }
     }
 
@@ -75,3 +84,4 @@ public class PlayerController : MonoBehaviour
         OnTrigger(other);
     }
 }
+

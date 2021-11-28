@@ -5,6 +5,15 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] public static float speed = 1f;
+    
+    private void OnEnable()
+    {
+        GameManager.onGameOver += Stop;
+    }
+    private void OnDisable()
+    {
+        GameManager.onGameOver -= Stop;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +26,9 @@ public class Obstacle : MonoBehaviour
         if (other.gameObject.tag == "Barrier") {
             Destroy(gameObject);
         }
+    }
+
+    void Stop() {
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 }

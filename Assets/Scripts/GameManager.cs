@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRigidBody;
     public delegate void CollisionEvent(Collision2D collision);
     public delegate void TriggerEvent(Collider2D collider);
+    public delegate void GameOverEvent();
+    [SerializeField] private GameObject gameOverScreen;
+
+    public static event GameOverEvent onGameOver;
 
     public static float score;
     public static float time;
@@ -40,16 +45,37 @@ public class GameManager : MonoBehaviour
             return f(90f);
         }
     }
-    public void StartGame() {
+    public void StartGame()
+    {
         isAlive = true;
         score = 0f;
         time = 0f;
         StartCoroutine(SpawnObstacles());
+        StartCoroutine(IncrementTime());
+    }
+
+    public void EndGame()
+    {
+        onGameOver();
+        // Setting `isAlive` to false will stop coroutines
+        isAlive = false;
+        playerRigidBody.bodyType = RigidbodyType2D.Static;
+        playerRigidBody.gameObject.GetComponent<PlayerInput>().enabled = false;
+        gameOverScreen.SetActive(true);
     }
     #endregion
     
     #region Unity Methods
-    IEnumerator SpawnObstacles() {
+    IEnumerator IncrementTime()
+    {
+        while (isAlive)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator SpawnObstacles()
+    {
         while (isAlive) {
             float delay = GetDelay(time);
             playerRigidBody.gravityScale = 2f * (GetDelay(0)/delay);
@@ -71,12 +97,6 @@ public class GameManager : MonoBehaviour
             playerRigidBody = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        time += Time.deltaTime;
-    }
     #endregion
 
     #region Collision
@@ -96,8 +116,7 @@ public class GameManager : MonoBehaviour
     private void ManageCollision(Collision2D other)
     {
         if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Obstacle") {
-            // TODO: Stop game
-            Debug.Log("Game Over");
+            EndGame();
         }
     }
     private void ManageTrigger(Collider2D other)
