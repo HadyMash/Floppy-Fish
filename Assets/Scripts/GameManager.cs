@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviour
     // Manage collisions
     private void ManageCollision(Collision2D other)
     {
-        print(other.gameObject.tag);
         if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Obstacle") {
             // TODO: Stop game
             Debug.Log("Game Over");

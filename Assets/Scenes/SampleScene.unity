@@ -682,8 +682,8 @@ MonoBehaviour:
   playerRigidBody: {fileID: 1956931905}
   scoreText: {fileID: 550453696}
   xSpawnOffset: 6
-  minYSpawnOffset: -5
-  maxYSpawnOffset: 5
+  minYSpawnOffset: -4.5
+  maxYSpawnOffset: 4.5
 --- !u!1 &1294461855
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 658d342ec4d714e3ca77d1e700cf88bc, type: 3}
-  m_NotificationBehavior: 1
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -961,12 +961,40 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1956931909}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 44985b3e-1ae7-452c-8f51-abe99c1715a4
     m_ActionName: Default/Jump[/Keyboard/space,/Keyboard/upArrow,/Keyboard/w,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1956931909}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1e101f40-a101-493e-9fec-ffee22c8cac0
+    m_ActionName: Swim/Move[/Keyboard/w,/Keyboard/s,/Keyboard/upArrow,/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Default
+  m_DefaultActionMap: 57a5953d-67a7-4944-a992-582304147e62
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1956931909
@@ -983,6 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1154263992}
   rb: {fileID: 1956931905}
-  lerpMultiplier: 15
+  rotationLerpMultiplier: 15
   velocityMultiplier: 3
   jumpForce: 4.5
+  swimSpeed: 3.5

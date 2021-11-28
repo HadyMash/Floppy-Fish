@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Default",
+            "name": "Flappy",
             "id": "57a5953d-67a7-4944-a992-582304147e62",
             "actions": [
                 {
@@ -59,6 +59,89 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Swim",
+            "id": "bd3647b7-af5f-4f70-b936-8ec8e58a83a5",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "1e101f40-a101-493e-9fec-ffee22c8cac0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "d8d25807-885c-416f-ae73-df0b064f1894",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "c2a72137-a0f2-4e87-8793-5cf6b60f316b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "0887fdc9-ed27-4f05-b788-5281a0da3e5f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Arrow",
+                    "id": "1985a4b2-fdfe-4e0d-9263-45b681cd5dd2",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "000d1bca-31c9-47a2-90a5-f7743b0e7000",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "f1bfbe47-b939-4f0b-b8a8-2402867a3ecd",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
