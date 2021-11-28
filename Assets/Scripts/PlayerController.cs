@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float lerpMultiplier = 15;
     [SerializeField] private float velocityMultiplier = 2f;
@@ -18,6 +19,10 @@ public class PlayerController : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+        if (gameManager == null)
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        }
     }
 
     private void Update()
@@ -27,7 +32,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnJump()
     {
-        rb.velocity = Vector2.up * jumpForce;
+        if (GameManager.isAlive)
+        {
+            rb.velocity = Vector2.up * jumpForce * (GameManager.GetDelay(0)/GameManager.GetDelay(GameManager.time));
+        }
+        else
+        {
+            gameManager.StartGame();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
