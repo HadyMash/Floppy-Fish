@@ -5,6 +5,8 @@
 
 This game was made for [#SeaJam](https://itch.io/jam/seajam).
 
+**Submission:** https://itch.io/jam/seajam/rate/1297077
+
 # Controls
 Avoid the trash and pick up fish food to survive.
 ## Flappy Mode
