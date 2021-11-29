@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private float rotationLerpMultiplier = 15f;
     [SerializeField] private float velocityMultiplier = 2f;
     public float jumpForce = 5f;
@@ -62,6 +63,8 @@ public class PlayerController : MonoBehaviour
                 gameManager.StartGame();
             }
             rb.velocity = Vector2.up * jumpForce * (GameManager.GetDelay(0)/GameManager.GetDelay(GameManager.time));
+
+            audioSource.PlayOneShot(audioSource.clip, 0.2f);
         }
     }
     public void OnMove(InputAction.CallbackContext context) {

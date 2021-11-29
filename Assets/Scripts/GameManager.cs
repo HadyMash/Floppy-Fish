@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     #region Variables
     [SerializeField] private List<GameObject> obstacles;
     [SerializeField] private Rigidbody2D playerRigidBody;
+    [SerializeField] private AudioSource audioSource;
     public delegate void CollisionEvent(Collision2D collision);
     public delegate void TriggerEvent(Collider2D collider);
     public delegate void GameOverEvent();
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         playerRigidBody.bodyType = RigidbodyType2D.Static;
         playerRigidBody.gameObject.GetComponent<PlayerInput>().enabled = false;
         gameOverScreen.SetActive(true);
+        audioSource.PlayOneShot(audioSource.clip);
     }
     #endregion
     
